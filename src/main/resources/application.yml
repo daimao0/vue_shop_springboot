@@ -1,0 +1,63 @@
+
+server:
+  port: 8888
+
+spring:
+  datasource:
+    url: jdbc:mysql://60.205.247.46:3306/vue_shop?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  redis:
+    host: 60.205.247.46
+    port: 6379
+    password: 3d9188577cc9bfe9291ac66b5cc872b7
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    timeout: 3000ms
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+
+#mybatisplus
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+        #驼峰下划线转换
+      column-underline: true
+        #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    refresh: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+# 自定义redis key
+redis:
+  key:
+    prefix:
+      authCode: "app:authCode:"
+      userToken: "app:token:prefix"
+    expire:
+      authCode: 1200
+      userToken: 36000000
+
+# 自定义 jwt key
+jwt:
+  tokenHeader: Authorization
+  secret: daimao
+  expiration: 604800  # 秒 一周
+  tokenHead: Bearer  #JWT负载中拿到开头
+  currentTimeMillis: jwtCurrentTimeMillis
+  # 配置白名单（不需要认证）
+  antMatchers: /login/**,/register/**,/static/**
+#rawPWD加密密文
+rawPWD: "daimao"

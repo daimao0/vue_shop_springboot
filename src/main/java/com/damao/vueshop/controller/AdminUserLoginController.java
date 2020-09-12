@@ -5,6 +5,7 @@ import com.damao.vueshop.model.dto.AdminUserDto;
 import com.damao.vueshop.service.AdminUserLoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,7 @@ public class AdminUserLoginController {
 
     @PostMapping("/login")
     @ApiOperation(value = "账号密码登录")
-    public CommonResult<AdminUserDto> loginUsePassword(@RequestBody Map<String,String> map,
+    public CommonResult<AdminUserDto> loginUsePassword(@RequestBody @ApiParam(value = "传入mobile、password") Map<String,String> map,
                                                        HttpServletResponse httpServletResponse){
         String mobile = map.get("mobile");
         String password = map.get("password");

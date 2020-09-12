@@ -1,10 +1,13 @@
 package com.damao.vueshop.service.impl;
 
+import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.damao.vueshop.common.api.CommonPage;
 import com.damao.vueshop.common.api.CommonResult;
 import com.damao.vueshop.mapper.AdminUserDao;
 import com.damao.vueshop.model.AdminUser;
 import com.damao.vueshop.service.AdminUserService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +45,11 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserDao, AdminUser> i
     }
 
     @Override
-    public CommonResult<List<AdminUser>> listAdminUsers(String query, String pageNum, String pageSize) {
+    public CommonResult<CommonPage<AdminUser>> listAdminUsers(String query, String pageNum, String pageSize) {
         List<AdminUser> listAdminUsers = adminUserDao.selectList(null);
-
-        return CommonResult.success(listAdminUsers,"获取成功");
+        CommonPage<AdminUser> adminUserCommonPages = CommonPage.restPage(listAdminUsers);
+        adminUserCommonPages.setPageNum(Convert.toInt(pageNum));
+        adminUserCommonPages.setPageSize(Convert.toInt(pageSize));
+        return CommonResult.success(adminUserCommonPages,"获取成功");
     }
 }

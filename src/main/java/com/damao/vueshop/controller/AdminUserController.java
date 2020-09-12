@@ -1,10 +1,12 @@
 package com.damao.vueshop.controller;
 
+import com.damao.vueshop.common.api.CommonPage;
 import com.damao.vueshop.common.api.CommonResult;
 import com.damao.vueshop.model.AdminUser;
 import com.damao.vueshop.service.AdminUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +28,7 @@ public class AdminUserController {
 
     @GetMapping("/users")
     @ApiOperation(value = "获取用户信息")
-    public CommonResult<List<AdminUser>> listAdminUsers(@RequestBody Map<String, String> map) {
+    public CommonResult<CommonPage<AdminUser>> listAdminUsers(@RequestBody @ApiParam(value = "传入query、Pagenum、pagesize") Map<String, String> map) {
         String query = map.get("query");
         String pageNum = map.get("pagenum");
         String pageSize = map.get("pagesize");

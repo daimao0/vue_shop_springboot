@@ -1,5 +1,6 @@
 package com.damao.vueshop.service;
 
+import com.damao.vueshop.common.api.CommonPage;
 import com.damao.vueshop.common.api.CommonResult;
 import com.damao.vueshop.model.AdminUser;
 
@@ -31,5 +32,5 @@ public interface AdminUserService {
      * @param query 查询参数
      * @return
      */
-    CommonResult<List<AdminUser>> listAdminUsers(String query, String pageNum, String pageSize);
+    CommonResult<CommonPage<AdminUser>> listAdminUsers(String query, String pageNum, String pageSize);
 }

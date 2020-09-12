@@ -1,6 +1,9 @@
 package com.damao.vueshop.service;
 
+import com.damao.vueshop.common.api.CommonResult;
 import com.damao.vueshop.model.AdminUser;
+
+import java.util.List;
 
 /**
  * AdminUserService的业务逻辑
@@ -16,8 +19,17 @@ public interface AdminUserService {
 
     /**
      * 通过用户名或者手机号查找管理员
-     * @param param
+     * @param mobile 手机号
      * @return
      */
-    AdminUser getAdminUserByMobile(String param);
+    AdminUser getAdminUserByMobile(String mobile);
+
+    /**
+     * 获取管理员列表
+     * @param pageNum 当前页码
+     * @param pageSize 每页显示条数
+     * @param query 查询参数
+     * @return
+     */
+    CommonResult<List<AdminUser>> listAdminUsers(String query, String pageNum, String pageSize);
 }

@@ -4,8 +4,7 @@ import cn.hutool.core.convert.Convert;
 import com.damao.vueshop.common.api.CommonResult;
 import com.damao.vueshop.common.utils.JwtTokenUtil;
 import com.damao.vueshop.model.AdminUser;
-import com.damao.vueshop.model.vo.AdminUserLoginVo;
-import com.damao.vueshop.model.vo.AdminUserVo;
+import com.damao.vueshop.model.dto.AdminUserDto;
 import com.damao.vueshop.service.AdminUserLoginService;
 import com.damao.vueshop.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +25,11 @@ public class AdminUserLoginServiceImpl implements AdminUserLoginService {
     AdminUserService adminUserService;
 
     @Override
-    public CommonResult<AdminUserVo> loginUsePassword(AdminUserLoginVo adminUserLoginVo, HttpServletResponse httpServletResponse) {
+    public CommonResult<AdminUserDto> loginUsePassword(String mobile ,String password, HttpServletResponse httpServletResponse) {
         //从数据库中取出adminuser
-        AdminUser adminuser = adminUserService.getAdminUserByMobile(adminUserLoginVo.getMobile());
-        if (adminuser!=null && adminuser.getPassword().equals(adminUserLoginVo.getPassword())){
-            AdminUserVo adminUserVo = new AdminUserVo()
+        AdminUser adminuser = adminUserService.getAdminUserByMobile(mobile);
+        if (adminuser!=null && adminuser.getPassword().equals(password)){
+            AdminUserDto adminUserVo = new AdminUserDto()
                     .setId(adminuser.getId())
                     .setNickname(adminuser.getNickname())
                     .setMobile(adminuser.getMobile())

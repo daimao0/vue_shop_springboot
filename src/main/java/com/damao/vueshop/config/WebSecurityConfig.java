@@ -57,9 +57,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.html",
                         "/**/*.css",
                         "/**/*.js",
+                        // -- swagger ui
                         "/swagger-resources/**",
                         "/swagger-ui.html",
-                        "/v2/api-docs"
+                        "/v2/api-docs",
+                        "/webjars/**"
                         ).permitAll()
                 //跨域请求会先进行一次options请求
                 .antMatchers(HttpMethod.OPTIONS)

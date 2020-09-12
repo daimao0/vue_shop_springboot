@@ -1,11 +1,15 @@
 package com.damao.vueshop.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.damao.vueshop.common.api.CommonResult;
 import com.damao.vueshop.mapper.AdminUserDao;
 import com.damao.vueshop.model.AdminUser;
 import com.damao.vueshop.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 呆毛
@@ -35,5 +39,12 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserDao, AdminUser> i
             return adminUser;
         }
         return null;
+    }
+
+    @Override
+    public CommonResult<List<AdminUser>> listAdminUsers(String query, String pageNum, String pageSize) {
+        List<AdminUser> listAdminUsers = adminUserDao.selectList(null);
+
+        return CommonResult.success(listAdminUsers,"获取成功");
     }
 }

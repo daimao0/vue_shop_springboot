@@ -1,9 +1,11 @@
-package com.damao.vueshop.model.vo;
+package com.damao.vueshop.model.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  *
@@ -14,7 +16,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "管理员登录后返回的用户参数")
 @Data
 @Accessors(chain = true)
-public class AdminUserVo {
+public class AdminUserDto implements Serializable {
 
     @ApiModelProperty(value = "管理员id")
     private Long id;

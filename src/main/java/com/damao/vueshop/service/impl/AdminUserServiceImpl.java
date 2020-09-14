@@ -7,11 +7,9 @@ import com.damao.vueshop.common.api.CommonResult;
 import com.damao.vueshop.mapper.AdminUserDao;
 import com.damao.vueshop.model.AdminUser;
 import com.damao.vueshop.service.AdminUserService;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,5 +49,12 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserDao, AdminUser> i
         adminUserCommonPages.setPageNum(Convert.toInt(pageNum));
         adminUserCommonPages.setPageSize(Convert.toInt(pageSize));
         return CommonResult.success(adminUserCommonPages,"获取成功");
+    }
+
+    @Override
+    public CommonResult<AdminUser> addAdminUser(String username, String password, String email, String mobile){
+        AdminUser adminUser = new AdminUser().setNickname(username).setPassword(password).setEmail(email).setMobile(mobile);
+        adminUserDao.insert(adminUser);
+        return CommonResult.success(adminUser,"添加成功");
     }
 }

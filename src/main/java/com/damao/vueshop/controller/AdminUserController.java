@@ -9,10 +9,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,5 +33,15 @@ public class AdminUserController {
         String pageNum = map.get("pagenum");
         String pageSize = map.get("pagesize");
         return adminUserService.listAdminUsers(query,pageNum,pageSize);
+    }
+
+    @PostMapping("/users")
+    @ApiOperation(value = "添加用户")
+    public CommonResult<AdminUser> addAdminUser(@RequestBody @ApiParam(value = "传入username、password、Email、mobile") Map<String,String> map){
+        String username = map.get("username");
+        String password = map.get("password");
+        String email = map.get("email");
+        String mobile = map.get("mobile");
+        return adminUserService.addAdminUser(username,password,email,mobile);
     }
 }

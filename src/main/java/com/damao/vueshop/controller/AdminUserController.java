@@ -8,10 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -43,5 +40,12 @@ public class AdminUserController {
         String email = map.get("email");
         String mobile = map.get("mobile");
         return adminUserService.addAdminUser(username,password,email,mobile);
+    }
+
+    @PutMapping("/users/{uId}/{type}")
+    @ApiOperation(value = "修改用户状态")
+    public CommonResult<AdminUser> updateAdminUserType(@ApiParam(value = "传入 uId、type") @PathVariable(value = "uId") Long uId,@PathVariable(value = "type") Integer type){
+        Long id = uId;
+        return adminUserService.updateAdminUserType(id,type);
     }
 }

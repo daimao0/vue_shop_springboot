@@ -57,4 +57,12 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserDao, AdminUser> i
         adminUserDao.insert(adminUser);
         return CommonResult.success(adminUser,"添加成功");
     }
+
+    @Override
+    public CommonResult<AdminUser> updateAdminUserType(Long id, Integer type) {
+        AdminUser adminUser = new AdminUser().setId(id).setStatus(type);
+        adminUserDao.updateById(adminUser);
+        return CommonResult.success(adminUser,"设置状态成功");
+    }
+
 }

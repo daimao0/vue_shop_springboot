@@ -41,4 +41,10 @@ public interface AdminUserService {
      * @return
      */
     CommonResult<AdminUser> addAdminUser (String username, String password, String email, String mobile);
+
+    /**修改用户状态
+     * @param id 用户id
+     * @param type 用户状态
+     */
+    CommonResult<AdminUser> updateAdminUserType(Long id,Integer type);
 }
